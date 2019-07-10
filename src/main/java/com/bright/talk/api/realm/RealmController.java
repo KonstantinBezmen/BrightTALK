@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(path="/service/user/realm")
@@ -75,7 +76,7 @@ public class RealmController {
 	@ResponseBody
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public RealmResponse create(
-		@RequestBody RealmCreateRequest request
+		@RequestBody @Valid RealmCreateRequest request
 	) throws BadRequestException {
 		String name = request.getName();
 		if (name == null || name.trim().isEmpty()) {

@@ -6,6 +6,7 @@ import com.bright.talk.domain.Realm;
 import com.bright.talk.domain.RealmService;
 import com.bright.talk.exception.BadRequestException;
 import com.bright.talk.exception.ResourceNotFoundException;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,6 +115,52 @@ public class RealmControllerIT extends IntegrationBase {
             .andCheckThat()
             .responseCodeIsCreated()
             .and(this::realmWasCreated);
+    }
+
+    @Test
+    public void create_RealmNameLengthLimit() {
+        sendRequestToEndpoint("/service/user/realm")
+            .usingPostMethod()
+            .withBody(new RealmCreateRequest()
+                .setName(RandomStringUtils.randomAlphabetic(64))
+            )
+            .andCheckThat()
+            .responseCodeIsCreated();
+    }
+
+    @Test
+    public void create_RealmNameLengthLimitFailed() {
+        sendRequestToEndpoint("/service/user/realm")
+            .usingPostMethod()
+            .withBody(new RealmCreateRequest()
+                .setName(RandomStringUtils.randomAlphabetic(65))
+            )
+            .andCheckThat()
+            .responseCodeIsBadRequest();
+    }
+
+    @Test
+    public void create_RealmDescLengthLimit() {
+        sendRequestToEndpoint("/service/user/realm")
+            .usingPostMethod()
+            .withBody(new RealmCreateRequest()
+                .setName("realm123")
+                .setDescription(RandomStringUtils.randomAlphabetic(255))
+            )
+            .andCheckThat()
+            .responseCodeIsCreated();
+    }
+
+    @Test
+    public void create_RealmDescLengthLimitFailed() {
+        sendRequestToEndpoint("/service/user/realm")
+            .usingPostMethod()
+            .withBody(new RealmCreateRequest()
+                .setName("realm123")
+                .setDescription(RandomStringUtils.randomAlphabetic(256))
+            )
+            .andCheckThat()
+            .responseCodeIsBadRequest();
     }
 
     private RealmCreateRequest getRealmRequest() {

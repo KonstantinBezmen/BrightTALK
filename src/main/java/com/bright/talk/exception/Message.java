@@ -5,7 +5,8 @@ public enum Message {
     INVALID_ARGUMENT("InvalidArgument"),
     INVALID_REALM_NAME("InvalidRealmName"),
     REALM_NOT_FOUND("RealmNotFound"),
-    DUPLICATE_REALM_NAME("DuplicateRealmName");
+    DUPLICATE_REALM_NAME("DuplicateRealmName"),
+    INVALID_PARAMS("InvalidParams");
 
     private String text;
 
