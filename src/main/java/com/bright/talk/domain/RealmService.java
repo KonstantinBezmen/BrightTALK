@@ -14,6 +14,15 @@ public interface RealmService {
     Realm get(Long realmId) throws ResourceNotFoundException;
 
     /**
+     * Returns realm by name.
+     *
+     * @param name name
+     * @return Realm
+     * @throws ResourceNotFoundException when realm with this name doesn't exist
+     */
+    Realm get(String name) throws ResourceNotFoundException;
+
+    /**
      * Creates realm.
      *
      * @param name realm name

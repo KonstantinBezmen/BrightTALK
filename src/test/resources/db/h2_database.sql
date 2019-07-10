@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `realm`;
+CREATE TABLE `realm` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(64) NOT NULL,
+  `description` VARCHAR(255) DEFAULT NULL,
+  "key" VARCHAR(32) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

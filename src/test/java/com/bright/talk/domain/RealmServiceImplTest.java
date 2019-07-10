@@ -77,6 +77,35 @@ public class RealmServiceImplTest {
     }
 
     @Test(expected = ResourceNotFoundException.class)
+    public void getByName_RealmNotFound() throws Exception {
+        String name = "name";
+        Specification<Realm> specification = mock(Specification.class);
+        when(specifications.nameEquals(name)).thenReturn(specification);
+        when(realmDao.findOne(specification)).thenReturn(Optional.empty());
+        service.get(name);
+    }
+
+    @Test
+    public void getByName() throws Exception {
+        String name = "name";
+        Specification<Realm> specification = mock(Specification.class);
+        when(specifications.nameEquals(name)).thenReturn(specification);
+        Realm realm1 = new Realm()
+            .setId(1L)
+            .setName("name")
+            .setDescription("desc")
+            .setKey("key");
+        when(realmDao.findOne(specification)).thenReturn(Optional.of(realm1));
+
+        Realm realm2 = service.get(name);
+        assertNotNull(realm2);
+        assertEquals(realm1.getId(), realm2.getId());
+        assertEquals(realm1.getName(), realm2.getName());
+        assertEquals(realm1.getDescription(), realm2.getDescription());
+        assertEquals(realm1.getKey(), realm2.getKey());
+    }
+
+    @Test(expected = ResourceNotFoundException.class)
     public void get_RealmNotFound() throws Exception {
         when(realmDao.findById(1L)).thenReturn(Optional.empty());
         service.get(1L);

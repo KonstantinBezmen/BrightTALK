@@ -44,4 +44,13 @@ public class RealmServiceImpl implements RealmService {
         }
         return realmOptional.get();
     }
+
+    @Override
+    public Realm get(String name) throws ResourceNotFoundException {
+        Optional<Realm> realmOptional = realmDao.findOne(realmSpecifications.nameEquals(name));
+        if (!realmOptional.isPresent()) {
+            throw new ResourceNotFoundException(Message.REALM_NOT_FOUND.getText());
+        }
+        return realmOptional.get();
+    }
 }
