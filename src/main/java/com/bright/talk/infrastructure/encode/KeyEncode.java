@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 @Component
 public final class KeyEncode {
     public static String generateKey() {
-        return RandomStringUtils.randomAlphabetic(16);
+        return RandomStringUtils.randomAlphabetic(32);
     }
 }
