@@ -32,13 +32,17 @@ public class FlywayMigrationHelper implements MigrationHelper {
     public void migrate() {
         logger.info("Migration started");
         try {
-            Flyway flyway = Flyway.configure()
-                .dataSource(url, username, password)
-                .load();
+            Flyway flyway = getFlyway();
             flyway.migrate();
         } catch (FlywayException e) {
             logger.error(e.getMessage(), e);
         }
         logger.info("Migration finished");
+    }
+
+    Flyway getFlyway() {
+        return Flyway.configure()
+            .dataSource(url, username, password)
+            .load();
     }
 }
