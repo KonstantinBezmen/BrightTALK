@@ -1,4 +1,4 @@
-package com.bright.talk.domain;
+package com.bright.talk.domain.realm;
 
 import com.bright.talk.exception.BadRequestException;
 import com.bright.talk.exception.ResourceNotFoundException;

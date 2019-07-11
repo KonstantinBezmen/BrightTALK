@@ -1,4 +1,4 @@
-package com.bright.talk.domain;
+package com.bright.talk.domain.realm;
 
 import org.springframework.data.jpa.domain.Specification;
 

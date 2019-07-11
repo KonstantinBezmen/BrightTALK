@@ -2,8 +2,8 @@ package com.bright.talk.api.realm;
 
 import com.bright.talk.Application;
 import com.bright.talk.api.IntegrationBase;
-import com.bright.talk.domain.Realm;
-import com.bright.talk.domain.RealmService;
+import com.bright.talk.domain.realm.Realm;
+import com.bright.talk.domain.realm.RealmService;
 import com.bright.talk.exception.BadRequestException;
 import com.bright.talk.exception.ResourceNotFoundException;
 import org.apache.commons.lang3.RandomStringUtils;

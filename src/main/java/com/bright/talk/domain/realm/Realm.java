@@ -1,4 +1,4 @@
-package com.bright.talk.domain;
+package com.bright.talk.domain.realm;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
